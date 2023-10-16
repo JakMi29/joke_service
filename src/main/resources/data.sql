@@ -15,3 +15,4 @@ VALUES("user@gmail.com","userName", "userLastname", "$2a$10$SNwa/sfgVcqc8NtFJDtL
         role varchar(255),
         primary key (id)
     );
+

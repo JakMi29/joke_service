@@ -1,4 +1,4 @@
-package com.jakmi.joke_service.auth;
+package com.jakmi.joke_service.api.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

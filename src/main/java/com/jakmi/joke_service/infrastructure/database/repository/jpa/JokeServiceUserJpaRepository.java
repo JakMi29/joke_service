@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JokeServiceUserJpaRepository extends JpaRepository<JokeServiceUserEntity,Integer> {
+    JokeServiceUserEntity findByEmail(String email);
 }

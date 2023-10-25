@@ -1,5 +1,6 @@
 package com.jakmi.joke_service.infrastructure.database.entity;
 
+import com.jakmi.joke_service.doamin.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,8 @@ public class JokeEntity {
     private String description;
     @Column(name="contents")
     private String contents;
+    @Enumerated(EnumType.STRING)
+    private Category category;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="joke_service_user_id")
     private JokeServiceUserEntity owner;

@@ -15,4 +15,6 @@ public interface JokeDAO {
     Page<JokeEntity> findAll(Pageable pageable);
 
     Page<JokeEntity> findByCategory(Category category, Pageable pageable);
+
+    void deleteJoke(String jokeName);
 }

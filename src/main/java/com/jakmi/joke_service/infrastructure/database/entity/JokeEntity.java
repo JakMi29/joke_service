@@ -19,8 +19,8 @@ public class JokeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
-    @Column(name="description")
-    private String description;
+    @Column(name="name")
+    private String name;
     @Column(name="contents")
     private String contents;
     @Enumerated(EnumType.STRING)

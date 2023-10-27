@@ -4,7 +4,7 @@ VALUES('user@gmail.com','userName', 'userLastname', '$2a$10$SNwa/sfgVcqc8NtFJDtL
 INSERT INTO joke_service_user(email,username,user_id)
 VALUES('user@gmail.com', 'username',1);
 
-INSERT INTO joke (description, category, contents, joke_service_user_id)
+INSERT INTO joke (name, category, contents, joke_service_user_id)
 VALUES ('Koala and the Eucalyptus Tree', 'ANIMAL', 'Why did the koala break up with the eucalyptus tree? Because it had too many leaves and couldn''t commit!', 1),
        ('The Frog and the Loan', 'ANIMAL', 'Why did the frog take out a loan? He wanted to jumpstart his business!', 1),
        ('The Dancing Dog', 'ANIMAL', 'What do you call a dog that loves to dance? A disco retriever!', 1),

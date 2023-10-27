@@ -1,6 +1,6 @@
 CREATE TABLE joke (
         id SERIAL NOT NULL,
-        description VARCHAR(255),
+        name VARCHAR(255),
         contents VARCHAR(255),
         category VARCHAR(255),
         joke_service_user_id INT NOT NULL,

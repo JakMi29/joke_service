@@ -16,13 +16,13 @@ public class JokePaginationService {
     private final JokeDAO jokeDAO;
 
     public Page<JokeEntity> paginate(int pageNumber, int pageSize){
-        Sort sort= Sort.by("description");
+        Sort sort= Sort.by("name");
         Pageable pageable= PageRequest.of(pageNumber,pageSize,sort);
         return jokeDAO.findAll(pageable);
     }
 
     public Page<JokeEntity> paginateByCategory(String categoryName, int pageNumber, int pageSize){
-        Sort sort= Sort.by("description");
+        Sort sort= Sort.by("name");
         Pageable pageable= PageRequest.of(pageNumber,pageSize,sort);
         Category category=Category.valueOf(categoryName.toUpperCase());
         return jokeDAO.findByCategory(category,pageable);

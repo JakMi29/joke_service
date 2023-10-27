@@ -2,6 +2,7 @@ package com.jakmi.joke_service.business;
 
 import com.jakmi.joke_service.api.rest.request.AddJokeRequest;
 import com.jakmi.joke_service.business.dao.JokeDAO;
+import com.jakmi.joke_service.doamin.Category;
 import com.jakmi.joke_service.doamin.Joke;
 import com.jakmi.joke_service.doamin.JokeServiceUser;
 import com.jakmi.joke_service.infrastructure.database.mapper.JokeEntityMapper;
@@ -38,10 +39,15 @@ public class JokeService {
     public Joke createJoke(AddJokeRequest request, String userEmail) {
         JokeServiceUser user = jokeServiceUserService.findByEmail(userEmail);
         Joke joke = Joke.builder()
-                .description(request.getDescription())
+                .name(request.getDescription())
                 .contents(request.getContents())
+                .category(Category.valueOf(request.getCategory().toUpperCase()))
                 .owner(user)
                 .build();
         return jokeDAO.createJoke(joke);
+    }
+    @Transactional
+    public void deleteJoke(String jokeName) {
+        jokeDAO.deleteJoke(jokeName);
     }
 }

@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class AddJokeRequest {
     private String description;
     private String contents;
+    private String category;
 }

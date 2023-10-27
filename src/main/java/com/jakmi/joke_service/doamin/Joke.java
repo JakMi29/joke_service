@@ -1,7 +1,5 @@
 package com.jakmi.joke_service.doamin;
 
-import com.jakmi.joke_service.infrastructure.database.entity.JokeServiceUserEntity;
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
@@ -14,7 +12,7 @@ import lombok.With;
 public class Joke {
 
     Integer id;
-    String description;
+    String name;
     String contents;
     Category category;
     JokeServiceUser owner;

@@ -24,7 +24,7 @@ public class JokeController {
     ) {
         Joke joke = jokeService.createJoke(request, extractToken(token));
         if (joke != null) {
-            return ResponseEntity.ok("Joke [%s] created successfully".formatted(joke.getDescription()));
+            return ResponseEntity.ok("Joke %s created successfully".formatted(joke.getName()));
         } else {
             return ResponseEntity.badRequest().body("Failed to create a joke");
         }
@@ -47,6 +47,11 @@ public class JokeController {
             @RequestHeader(name = "Authorization") String token
     ) {
         return ResponseEntity.ok(jokeService.findByCategory(name,pageNumber,pageSize));
+    }
+    @DeleteMapping
+    public ResponseEntity<String> deleteJoke(@RequestBody String jokeName){
+        jokeService.deleteJoke(jokeName);
+        return ResponseEntity.ok("Joke: %s was deleted successful".formatted(jokeName));
     }
 
     private String extractToken(String token) {

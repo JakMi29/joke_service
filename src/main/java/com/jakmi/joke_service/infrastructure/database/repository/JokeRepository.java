@@ -41,4 +41,9 @@ public class JokeRepository implements JokeDAO {
     public Page<JokeEntity> findByCategory(Category category, Pageable pageable) {
         return repository.findByCategory(category, pageable);
     }
+
+    @Override
+    public void deleteJoke(String name) {
+        this.repository.deleteByName(name);
+    }
 }

@@ -4,7 +4,6 @@ import com.jakmi.joke_service.doamin.Joke;
 import com.jakmi.joke_service.doamin.JokeServiceUser;
 import com.jakmi.joke_service.infrastructure.database.entity.JokeEntity;
 import com.jakmi.joke_service.infrastructure.database.entity.JokeServiceUserEntity;
-import com.jakmi.joke_service.infrastructure.database.entity.JokeServiceUserEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -41,14 +40,14 @@ public class JokeServiceUserEntityMapper {
         return Joke.builder()
                 .id(entity.getId())
                 .contents(entity.getContents())
-                .description(entity.getDescription())
+                .name(entity.getName())
                 .build();
     }
     private JokeEntity mapJoke(Joke joke){
         return JokeEntity.builder()
                 .id(joke.getId())
                 .contents(joke.getContents())
-                .description(joke.getDescription())
+                .name(joke.getName())
                 .build();
     }
 }

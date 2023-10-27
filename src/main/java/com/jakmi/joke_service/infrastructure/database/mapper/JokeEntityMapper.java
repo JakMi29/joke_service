@@ -12,7 +12,7 @@ public class JokeEntityMapper {
         return Joke.builder()
                 .id(entity.getId())
                 .contents(entity.getContents())
-                .description(entity.getDescription())
+                .name(entity.getName())
                 .category(entity.getCategory())
                 .owner(
                         JokeServiceUser.builder()
@@ -28,7 +28,7 @@ public class JokeEntityMapper {
 
         return JokeEntity.builder()
                 .contents(joke.getContents())
-                .description(joke.getDescription())
+                .name(joke.getName())
                 .category(joke.getCategory())
                 .owner(
                         JokeServiceUserEntity.builder()

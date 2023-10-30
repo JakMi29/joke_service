@@ -19,4 +19,9 @@ public class JokeServiceUserRepository implements JokeServiceUserDAO {
         JokeServiceUserEntity user = repository.findByEmail(email);
         return mapper.map(user);
     }
+
+    @Override
+    public void deleteByEmail(String email) {
+        repository.deleteByEmail(email);
+    }
 }

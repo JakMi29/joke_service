@@ -23,6 +23,6 @@ public class JokeServiceUserEntity {
     private String userName;
     @Column(name = "email")
     private String email;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner",cascade = CascadeType.REMOVE)
     private Set<JokeEntity> jokes;
 }

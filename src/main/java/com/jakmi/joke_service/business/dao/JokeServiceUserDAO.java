@@ -4,4 +4,5 @@ import com.jakmi.joke_service.doamin.JokeServiceUser;
 
 public interface JokeServiceUserDAO {
     JokeServiceUser findByEmail(String email);
+    void deleteByEmail(String email);
 }

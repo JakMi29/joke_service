@@ -14,7 +14,7 @@ public class JokeServiceUserEntityMapper {
         return JokeServiceUser.builder()
                 .id(entity.getId())
                 .email(entity.getEmail())
-                .userName(entity.getUserName())
+                .userName(entity.getUsername())
                 .jokes(
                         entity.getJokes().stream()
                                 .map(this::mapJoke).
@@ -27,7 +27,7 @@ public class JokeServiceUserEntityMapper {
         return JokeServiceUserEntity.builder()
                 .id(user.getId())
                 .email(user.getEmail())
-                .userName(user.getUserName())
+                .username(user.getUserName())
                 .jokes(
                         user.getJokes().stream()
                                 .map(this::mapJoke)

@@ -20,7 +20,7 @@ public class JokeServiceUserEntity {
     @Column(name = "id")
     private Integer id;
     @Column(name = "username")
-    private String userName;
+    private String username;
     @Column(name = "email")
     private String email;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner",cascade = CascadeType.REMOVE)

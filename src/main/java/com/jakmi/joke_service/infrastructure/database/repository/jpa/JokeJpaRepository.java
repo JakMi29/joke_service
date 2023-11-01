@@ -1,6 +1,7 @@
 package com.jakmi.joke_service.infrastructure.database.repository.jpa;
 
 import com.jakmi.joke_service.doamin.Category;
+import com.jakmi.joke_service.doamin.JokeServiceUser;
 import com.jakmi.joke_service.infrastructure.database.entity.JokeEntity;
 import com.jakmi.joke_service.infrastructure.database.entity.JokeServiceUserEntity;
 import org.springframework.data.domain.Page;
@@ -15,4 +16,6 @@ public interface JokeJpaRepository extends JpaRepository<JokeEntity,Integer> {
     Page<JokeEntity> findByCategory(Category category, Pageable pageable);
 
     void deleteByName(String name);
+
+    Page<JokeEntity> findByOwner(JokeServiceUserEntity jokeServiceUser, Pageable pageable);
 }

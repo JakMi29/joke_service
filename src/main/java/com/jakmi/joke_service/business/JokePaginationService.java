@@ -2,6 +2,7 @@ package com.jakmi.joke_service.business;
 
 import com.jakmi.joke_service.business.dao.JokeDAO;
 import com.jakmi.joke_service.doamin.Category;
+import com.jakmi.joke_service.doamin.JokeServiceUser;
 import com.jakmi.joke_service.infrastructure.database.entity.JokeEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 @Service
 @AllArgsConstructor
@@ -29,4 +32,9 @@ public class JokePaginationService {
     }
 
 
+    public Page<JokeEntity> paginateByUser(JokeServiceUser jokeServiceUser, Integer pageNumber, Integer pageSize) {
+        Sort sort= Sort.by("name");
+        Pageable pageable= PageRequest.of(pageNumber,pageSize,sort);
+        return jokeDAO.findByUser(jokeServiceUser,pageable);
+    }
 }

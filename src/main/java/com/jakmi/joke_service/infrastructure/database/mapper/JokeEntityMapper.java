@@ -18,7 +18,7 @@ public class JokeEntityMapper {
                         JokeServiceUser.builder()
                                 .id(entity.getId())
                                 .email(entity.getOwner().getEmail())
-                                .userName(entity.getOwner().getUserName())
+                                .userName(entity.getOwner().getUsername())
                                 .build()
                 )
                 .build();
@@ -34,7 +34,7 @@ public class JokeEntityMapper {
                         JokeServiceUserEntity.builder()
                                 .id(joke.getOwner().getId())
                                 .email(joke.getOwner().getEmail())
-                                .userName(joke.getOwner().getUserName())
+                                .username(joke.getOwner().getUserName())
                                 .build()
                 )
                 .build();

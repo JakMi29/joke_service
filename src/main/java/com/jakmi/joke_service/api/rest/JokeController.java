@@ -39,6 +39,17 @@ public class JokeController {
         return ResponseEntity.ok(jokeService.findAll(pageNumber,pageSize));
     }
 
+
+    @GetMapping(value="/byUser/{pageNumber}/{pageSize}")
+    public ResponseEntity<List<Joke>> getUserJoke(
+            @RequestBody String userName,
+            @PathVariable Integer pageNumber,
+            @PathVariable Integer pageSize,
+            @RequestHeader(name = "Authorization") String token
+    ) {
+        return ResponseEntity.ok(jokeService.findByUserName(userName,pageNumber,pageSize));
+    }
+
     @GetMapping(value="/category/{name}/{pageNumber}/{pageSize}")
     public ResponseEntity<List<Joke>> jokeByCategory(
             @PathVariable String name,

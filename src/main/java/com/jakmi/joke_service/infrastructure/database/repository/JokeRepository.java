@@ -33,7 +33,6 @@ public class JokeRepository implements JokeDAO {
     public Joke createJoke(Joke joke) {
         System.out.println(joke);
         JokeEntity map = JokeEntityMapper.map(joke);
-        System.out.println(map);
         JokeEntity entity = repository.save(map);
         return JokeEntityMapper.map(entity);
     }
@@ -51,6 +50,12 @@ public class JokeRepository implements JokeDAO {
     @Override
     public void deleteJoke(String name) {
         this.repository.deleteByName(name);
+    }
+
+    @Override
+    public Page<JokeEntity> findByUser(JokeServiceUser jokeServiceUser, Pageable pageable) {
+        JokeServiceUserEntity user=userEntityMapper.map(jokeServiceUser);
+        return repository.findByOwner(user,pageable);
     }
 
 

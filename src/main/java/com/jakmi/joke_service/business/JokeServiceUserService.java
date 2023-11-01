@@ -1,5 +1,6 @@
 package com.jakmi.joke_service.business;
 
+import com.jakmi.joke_service.api.auth.RegisterRequest;
 import com.jakmi.joke_service.business.dao.JokeServiceUserDAO;
 import com.jakmi.joke_service.doamin.JokeServiceUser;
 import com.jakmi.joke_service.infrastructure.security.UserRepository;
@@ -22,5 +23,14 @@ public class JokeServiceUserService {
     public void deleteUser(String email) {
         userRepository.deleteByEmail(email);
         jokeServiceUserDAO.deleteByEmail(email);
+    }
+
+    @Transactional
+    public JokeServiceUser findByUsername(String username) {
+        return jokeServiceUserDAO.findByUserName(username);
+    }
+    @Transactional
+    public void createUser(RegisterRequest request){
+        jokeServiceUserDAO.createUser(request);
     }
 }

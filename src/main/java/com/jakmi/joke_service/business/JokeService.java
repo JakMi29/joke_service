@@ -23,14 +23,14 @@ public class JokeService {
 
     @Transactional
     public List<Joke> findAll(int pageNumber, int pageSize) {
-        return this.jokePaginationService.paginate(pageNumber,pageSize).stream()
+        return this.jokePaginationService.paginate(pageNumber, pageSize).stream()
                 .map(jokeEntityMapper::map)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public List<Joke> findByCategory(String category, int pageNumber, int pageSize) {
-        return this.jokePaginationService.paginateByCategory(category,pageNumber,pageSize).stream()
+        return this.jokePaginationService.paginateByCategory(category, pageNumber, pageSize).stream()
                 .map(jokeEntityMapper::map)
                 .collect(Collectors.toList());
     }
@@ -46,8 +46,17 @@ public class JokeService {
                 .build();
         return jokeDAO.createJoke(joke);
     }
+
     @Transactional
     public void deleteJoke(String jokeName) {
         jokeDAO.deleteJoke(jokeName);
+    }
+
+    @Transactional
+    public List<Joke> findByUserName(String userName, Integer pageNumber, Integer pageSize) {
+        JokeServiceUser jokeServiceUser = jokeServiceUserService.findByUsername(userName);
+        return this.jokePaginationService.paginateByUser(jokeServiceUser, pageNumber, pageSize).stream()
+                .map(jokeEntityMapper::map)
+                .collect(Collectors.toList());
     }
 }

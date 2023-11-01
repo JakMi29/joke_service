@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface JokeServiceUserJpaRepository extends JpaRepository<JokeServiceUserEntity,Integer> {
     JokeServiceUserEntity findByEmail(String email);
     void deleteByEmail(String email);
+
+    JokeServiceUserEntity findByUsername(String username);
 }

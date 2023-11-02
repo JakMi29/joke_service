@@ -15,26 +15,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
 public class JokeRepository implements JokeDAO {
 
     private final JokeJpaRepository repository;
-    private final JokeEntityMapper JokeEntityMapper;
-    private final JokeServiceUserEntityMapper userEntityMapper;
+    private final JokeEntityMapper mapper;
+    private final JokeServiceUserEntityMapper jokeServiceUserEntityMapper;
 
     @Override
-    public List<Joke> findAll() {
-        return repository.findAll().stream().map(JokeEntityMapper::map).toList();
+    public List<JokeEntity> findAll() {
+        return repository.findAll();
     }
 
     @Override
-    public Joke createJoke(Joke joke) {
-        System.out.println(joke);
-        JokeEntity map = JokeEntityMapper.map(joke);
-        JokeEntity entity = repository.save(map);
-        return JokeEntityMapper.map(entity);
+    public Joke createJoke(JokeEntity joke) {
+        return mapper.map(repository.save(joke));
     }
 
     @Override
@@ -54,7 +52,7 @@ public class JokeRepository implements JokeDAO {
 
     @Override
     public Page<JokeEntity> findByUser(JokeServiceUser jokeServiceUser, Pageable pageable) {
-        JokeServiceUserEntity user=userEntityMapper.map(jokeServiceUser);
+        JokeServiceUserEntity user=jokeServiceUserEntityMapper.map(jokeServiceUser);
         return repository.findByOwner(user,pageable);
     }
 

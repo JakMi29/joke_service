@@ -1,10 +1,10 @@
 package com.jakmi.joke_service.business;
 
-import com.jakmi.joke_service.api.auth.RegisterRequest;
 import com.jakmi.joke_service.business.dao.JokeServiceUserDAO;
 import com.jakmi.joke_service.doamin.JokeServiceUser;
 import com.jakmi.joke_service.infrastructure.security.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +16,8 @@ public class JokeServiceUserService {
 
     @Transactional
     public JokeServiceUser findByEmail(String email) {
-        return jokeServiceUserDAO.findByEmail(email);
+        return jokeServiceUserDAO.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User with email: %s does not exist".formatted(email)));
     }
 
     @Transactional
@@ -27,10 +28,7 @@ public class JokeServiceUserService {
 
     @Transactional
     public JokeServiceUser findByUsername(String username) {
-        return jokeServiceUserDAO.findByUserName(username);
-    }
-    @Transactional
-    public void createUser(RegisterRequest request){
-        jokeServiceUserDAO.createUser(request);
+        return jokeServiceUserDAO.findByUserName(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with username: %s does not exist".formatted(username)));
     }
 }

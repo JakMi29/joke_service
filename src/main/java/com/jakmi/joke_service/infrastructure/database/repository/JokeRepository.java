@@ -3,19 +3,18 @@ package com.jakmi.joke_service.infrastructure.database.repository;
 import com.jakmi.joke_service.business.dao.JokeDAO;
 import com.jakmi.joke_service.doamin.Category;
 import com.jakmi.joke_service.doamin.Joke;
-import com.jakmi.joke_service.doamin.JokeServiceUser;
+import com.jakmi.joke_service.doamin.ServiceUser;
 import com.jakmi.joke_service.infrastructure.database.entity.JokeEntity;
-import com.jakmi.joke_service.infrastructure.database.entity.JokeServiceUserEntity;
+import com.jakmi.joke_service.infrastructure.database.entity.ServiceUserEntity;
 import com.jakmi.joke_service.infrastructure.database.mapper.JokeEntityMapper;
-import com.jakmi.joke_service.infrastructure.database.mapper.JokeServiceUserEntityMapper;
+import com.jakmi.joke_service.infrastructure.database.mapper.ServiceUserEntityMapper;
 import com.jakmi.joke_service.infrastructure.database.repository.jpa.JokeJpaRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -23,7 +22,7 @@ public class JokeRepository implements JokeDAO {
 
     private final JokeJpaRepository repository;
     private final JokeEntityMapper mapper;
-    private final JokeServiceUserEntityMapper jokeServiceUserEntityMapper;
+    private final ServiceUserEntityMapper serviceUserEntityMapper;
 
     @Override
     public List<JokeEntity> findAll() {
@@ -31,18 +30,18 @@ public class JokeRepository implements JokeDAO {
     }
 
     @Override
-    public Joke createJoke(JokeEntity joke) {
-        return mapper.map(repository.save(joke));
+    public Joke createJoke(Joke joke) {
+        return mapper.map(repository.save(mapper.map(joke)));
     }
 
     @Override
-    public Page<JokeEntity> findAll(Pageable pageable) {
-        return repository.findAll(pageable);
+    public List<Joke> findAll(Pageable pageable) {
+        return repository.findAll(pageable).stream().map(mapper::map).collect(Collectors.toList());
     }
 
     @Override
-    public Page<JokeEntity> findByCategory(Category category, Pageable pageable) {
-        return repository.findByCategory(category, pageable);
+    public List<Joke> findByCategory(Category category, Pageable pageable) {
+        return repository.findByCategory(category, pageable).stream().map(mapper::map).collect(Collectors.toList());
     }
 
     @Override
@@ -51,9 +50,14 @@ public class JokeRepository implements JokeDAO {
     }
 
     @Override
-    public Page<JokeEntity> findByUser(JokeServiceUser jokeServiceUser, Pageable pageable) {
-        JokeServiceUserEntity user=jokeServiceUserEntityMapper.map(jokeServiceUser);
-        return repository.findByOwner(user,pageable);
+    public List<Joke> findByUser(ServiceUser serviceUser, Pageable pageable) {
+        ServiceUserEntity user = serviceUserEntityMapper.map(serviceUser);
+        return repository.findByOwner(user, pageable).stream().map(mapper::map).collect(Collectors.toList());
+    }
+
+    @Override
+    public Joke findByName(String oldName) {
+        return mapper.map(repository.findByName(oldName));
     }
 
 

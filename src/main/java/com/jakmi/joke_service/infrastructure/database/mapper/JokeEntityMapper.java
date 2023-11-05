@@ -1,9 +1,9 @@
 package com.jakmi.joke_service.infrastructure.database.mapper;
 
 import com.jakmi.joke_service.doamin.Joke;
-import com.jakmi.joke_service.doamin.JokeServiceUser;
+import com.jakmi.joke_service.doamin.ServiceUser;
 import com.jakmi.joke_service.infrastructure.database.entity.JokeEntity;
-import com.jakmi.joke_service.infrastructure.database.entity.JokeServiceUserEntity;
+import com.jakmi.joke_service.infrastructure.database.entity.ServiceUserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +15,7 @@ public class JokeEntityMapper {
                 .name(entity.getName())
                 .category(entity.getCategory())
                 .owner(
-                        JokeServiceUser.builder()
+                        ServiceUser.builder()
                                 .id(entity.getId())
                                 .email(entity.getOwner().getEmail())
                                 .userName(entity.getOwner().getUsername())
@@ -31,7 +31,7 @@ public class JokeEntityMapper {
                 .name(joke.getName())
                 .category(joke.getCategory())
                 .owner(
-                        JokeServiceUserEntity.builder()
+                        ServiceUserEntity.builder()
                                 .id(joke.getOwner().getId())
                                 .email(joke.getOwner().getEmail())
                                 .username(joke.getOwner().getUserName())

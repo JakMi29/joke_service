@@ -12,9 +12,11 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddJokeRequest {
+public class EditJokeRequest {
     @NotBlank
-    private String name;
+    private String oldName;
+    @NotBlank
+    private String newName;
     @NotBlank
     private String contents;
     @NotBlank

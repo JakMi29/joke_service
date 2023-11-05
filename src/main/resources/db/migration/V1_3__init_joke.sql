@@ -3,9 +3,9 @@ CREATE TABLE joke (
         name VARCHAR(255),
         contents VARCHAR(255),
         category VARCHAR(255),
-        joke_service_user_id INT NOT NULL,
+        service_user_id INT NOT NULL,
         PRIMARY KEY (id),
-        CONSTRAINT fk_joke_service_user_id
-            FOREIGN KEY (joke_service_user_id)
-                REFERENCES joke_service_user (id)
+        CONSTRAINT fk_service_user_id
+            FOREIGN KEY (service_user_id)
+                REFERENCES service_user (id)
     );

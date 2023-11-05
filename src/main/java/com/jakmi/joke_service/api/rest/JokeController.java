@@ -1,6 +1,7 @@
 package com.jakmi.joke_service.api.rest;
 
 import com.jakmi.joke_service.api.rest.request.AddJokeRequest;
+import com.jakmi.joke_service.api.rest.request.EditJokeRequest;
 import com.jakmi.joke_service.business.JokeService;
 import com.jakmi.joke_service.doamin.Joke;
 import com.jakmi.joke_service.infrastructure.security.JwtService;
@@ -18,7 +19,7 @@ public class JokeController {
     private final JokeService jokeService;
 
     @PostMapping
-    public ResponseEntity<String> create(
+    public ResponseEntity<String> createJoke(
             @RequestHeader(name = "Authorization") String token,
             @RequestBody AddJokeRequest request
     ) {
@@ -30,37 +31,41 @@ public class JokeController {
         }
     }
 
-    @GetMapping(value="/{pageNumber}/{pageSize}")
+    @GetMapping(value = "/{pageNumber}/{pageSize}")
     public ResponseEntity<List<Joke>> joke(
             @PathVariable Integer pageNumber,
-            @PathVariable Integer pageSize,
-            @RequestHeader(name = "Authorization") String token
+            @PathVariable Integer pageSize
     ) {
-        return ResponseEntity.ok(jokeService.findAll(pageNumber,pageSize));
+        return ResponseEntity.ok(jokeService.findAll(pageNumber, pageSize));
     }
 
 
-    @GetMapping(value="/byUser/{pageNumber}/{pageSize}")
+    @GetMapping(value = "/byUser/{pageNumber}/{pageSize}")
     public ResponseEntity<List<Joke>> getUserJoke(
             @RequestBody String userName,
             @PathVariable Integer pageNumber,
-            @PathVariable Integer pageSize,
-            @RequestHeader(name = "Authorization") String token
+            @PathVariable Integer pageSize
     ) {
-        return ResponseEntity.ok(jokeService.findByUserName(userName,pageNumber,pageSize));
+        return ResponseEntity.ok(jokeService.findByUserName(userName, pageNumber, pageSize));
     }
 
-    @GetMapping(value="/category/{name}/{pageNumber}/{pageSize}")
+    @GetMapping(value = "/category/{name}/{pageNumber}/{pageSize}")
     public ResponseEntity<List<Joke>> jokeByCategory(
             @PathVariable String name,
             @PathVariable Integer pageNumber,
-            @PathVariable Integer pageSize,
-            @RequestHeader(name = "Authorization") String token
+            @PathVariable Integer pageSize
     ) {
-        return ResponseEntity.ok(jokeService.findByCategory(name,pageNumber,pageSize));
+        return ResponseEntity.ok(jokeService.findByCategory(name, pageNumber, pageSize));
     }
+
+    @PatchMapping
+    public ResponseEntity<String> editJoke(@RequestBody EditJokeRequest editJokeRequest) {
+        jokeService.editJoke(editJokeRequest);
+        return ResponseEntity.ok("Joke: %s was changed successful".formatted(editJokeRequest.getOldName()));
+    }
+
     @DeleteMapping
-    public ResponseEntity<String> deleteJoke(@RequestBody String jokeName){
+    public ResponseEntity<String> deleteJoke(@RequestBody String jokeName) {
         jokeService.deleteJoke(jokeName);
         return ResponseEntity.ok("Joke: %s was deleted successful".formatted(jokeName));
     }

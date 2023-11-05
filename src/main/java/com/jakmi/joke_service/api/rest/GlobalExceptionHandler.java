@@ -1,5 +1,6 @@
 package com.jakmi.joke_service.api.rest;
 
+import com.jakmi.joke_service.doamin.exception.NotFoundException;
 import com.jakmi.joke_service.doamin.exception.UserAlreadyExist;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExist.class)
     public ResponseEntity<String> handleUserAlreadyExistException(Exception ex) {
+        String message = String.format(ex.getMessage());
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(NotFoundException ex) {
         String message = String.format(ex.getMessage());
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }

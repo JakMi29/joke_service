@@ -15,5 +15,5 @@ public class Joke {
     String name;
     String contents;
     Category category;
-    JokeServiceUser owner;
+    ServiceUser owner;
 }

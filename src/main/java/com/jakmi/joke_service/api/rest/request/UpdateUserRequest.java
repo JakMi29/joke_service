@@ -1,5 +1,6 @@
 package com.jakmi.joke_service.api.rest.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +13,15 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddJokeRequest {
+public class UpdateUserRequest {
     @NotBlank
-    private String name;
+    private String firstname;
     @NotBlank
-    private String contents;
+    private String lastname;
     @NotBlank
-    private String category;
+    private String username;
+    @NotBlank
+    @Email
+    private String newEmail;
+    private String oldEmail;
 }

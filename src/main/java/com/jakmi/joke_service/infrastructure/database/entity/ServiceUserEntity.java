@@ -13,8 +13,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="joke_service_user")
-public class JokeServiceUserEntity {
+@Table(name = "service_user")
+public class ServiceUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,6 +23,6 @@ public class JokeServiceUserEntity {
     private String username;
     @Column(name = "email")
     private String email;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner",cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.REMOVE)
     private Set<JokeEntity> jokes;
 }

@@ -1,6 +1,5 @@
 package com.jakmi.joke_service.infrastructure.security;
 
-import com.jakmi.joke_service.infrastructure.security.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="_user")
+@Table(name = "_user")
 public class User implements UserDetails {
 
     @Id
@@ -35,6 +34,7 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

@@ -13,19 +13,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="joke")
+@Table(name = "joke")
 public class JokeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-    @Column(name="contents")
+    @Column(name = "contents")
     private String contents;
     @Enumerated(EnumType.STRING)
     private Category category;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="joke_service_user_id")
-    private JokeServiceUserEntity owner;
+    @JoinColumn(name = "service_user_id")
+    private ServiceUserEntity owner;
 }

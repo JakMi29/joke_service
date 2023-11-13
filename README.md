@@ -1,6 +1,6 @@
-# Food App
-This is the documentation for the food ordering application, which includes a backend, a database, and a basic frontend. The application is implemented 
-using Spring Boot and runs on the Tomcat server.
+# Joke service
+This is the documentation for the joke application, which includes a backend, a databaseThe application is implemented 
+using Spring Boot.
 # Technology
 Java 17<br>
 Spring Boot 3<br>

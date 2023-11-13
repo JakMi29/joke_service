@@ -4,6 +4,7 @@ using Spring Boot and runs on the Tomcat server.
 # Technology
 Java 17<br>
 Spring Boot 3<br>
+JWT authentication
 Hibernate<br>
 Maven<br>
 Lombok<br>

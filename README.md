@@ -33,5 +33,8 @@ Password: test <br><br>
 To stop the project, you can use the following command: docker compose down
 This will stop and remove all the containers, networks, and volumes defined in the docker-compose.yaml file.
 
+# About app
+Joke service is a platform where users can add and browse jokes submitted by other users. The admin has the authority to remove users and unwanted jokes.
+
 
 

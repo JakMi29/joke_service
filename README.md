@@ -19,7 +19,7 @@ Docker: https://www.docker.com/
 1. Clone the Repository<br>
 2. Run the following command to start the project: docker compose up
 
-#Api documentation
+# Api documentation
 https://documenter.getpostman.com/view/28414916/2s9YXmZ19b
 
 # Logging into the Application

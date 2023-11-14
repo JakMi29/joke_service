@@ -17,10 +17,12 @@ Before running the application on Docker, make sure your system meets the follow
 Docker: https://www.docker.com/
 # Running the Application on Docker
 1. Clone the Repository<br>
-2. Run the following command to start the project: docker compose up 
-   
-# Logging into the Application
+2. Run the following command to start the project: docker compose up
 
+#Api documentation
+https://documenter.getpostman.com/view/28414916/2s9YXmZ19b
+
+# Logging into the Application
 Customers:<br><br>
 email: userAdam@gmail.com <br>
 Password: test <br><br>

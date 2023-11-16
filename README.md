@@ -4,7 +4,7 @@ using Spring Boot.
 # Technology
 Java 17<br>
 Spring Boot 3<br>
-JWT authentication
+JWT authentication<br>
 Hibernate<br>
 Maven<br>
 Lombok<br>
